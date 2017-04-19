@@ -1,3 +1,11 @@
-#header-container{
+#header-container .title{
 	text-align: center;
+}
+#header-container .author{
+	text-align: left;;
+	display: block;
+}
+
+table tr.hidden{
+	display: none;
 }
