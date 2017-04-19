@@ -1,2 +1,4 @@
 # visualizacao_tp
 Trabalhos práticos de visualização de dados.
+
+#NESTE REPOSITÓRIO COLOCAREMOS TODOS OS TRABALHOS DO GRUPO FEITOS AO LONGO DA DISCIPLINA SEPARADOS POR PASTA
