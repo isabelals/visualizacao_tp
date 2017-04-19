@@ -6,15 +6,19 @@
 
 	<!--CSS-->
 	<link rel="stylesheet" href="vendors/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/main.css">
 
 	<!--JS-->
-	<script src="vendors/js/jquery-3.2.1.min.js"></script>
-	<script src="vendors/js/d3.min.js"></script>
+	<script type="text/javascript" src="vendors/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="vendors/js/d3.min.js"></script>
 
 </head>
 <body>
 <div id="main-container">
 	<div id="header-container">
+		<div class="title">
+			<h1>Trabalho Prático 1</h1>
+		</div>
 	</div>
 	<div id="table-container">
 		<table class="table table-striped">
@@ -26,7 +30,38 @@
 	</div>
 </div>
 
-<script> // INSERIR JAVASCRITP INICIAL AQUI (MAIN)
+<script type="text/javascript"> // INSERIR JAVASCRITP INICIAL AQUI (MAIN)
+var datafile = "data/dados_tp1.csv";
+var tabledata;
+var tableheader;
+
+$(document).ready(function(){
+	d3.csv(datafile, function(d){
+		tableheader = Object.keys(d[0]);
+		tabledata = d;
+
+		d3.selectAll("table").selectAll("thead").append("tr").selectAll("th").data(tableheader).enter().append("th").text(function(c){return c;});
+
+		putTable(tabledata, tableheader);
+	});
+});
+
+// recebe a matriz que deve ser inserida na tabela
+// cada linha é um objeto (por causa do d3)
+function putTable(data, columns){
+	d3.selectAll("table").selectAll("tbody").selectAll("tr").data(data).enter().append("tr")
+	.selectAll('td')
+	.data(function (row) {
+	return columns.map(
+		function (column) {
+			return {column: column, value: row[column]};
+		});
+	})
+	.enter()
+	.append('td')
+	.text(function (d) { return d.value; });
+}
+
 </script>
 </body>
 
