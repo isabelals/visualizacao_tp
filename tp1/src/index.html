@@ -49,7 +49,7 @@ var rowsPerPage = 20;
 var colSort = 0; // índice da coluna que deve ser ordenada
 var sortDesc = false; // ordenar crescente
 // busca
-var keyword = "Watertown";
+var keyword = "";
 
 $(document).ready(function(){
 	d3.csv(datafile, function(d){
@@ -61,7 +61,7 @@ $(document).ready(function(){
 		putTable(tabledata, tableheader);
 		sortTable(colSort, sortDesc, tabledata);
 		setPagination(page, rowsPerPage);
-		//search(keyword);
+		tableMatch(keyword);
 	});
 });
 
@@ -101,21 +101,26 @@ function setPagination(newPage, rows){
 			return !(start <= i && i <= end) // verdade se i está fora dos limites
 		});
 }
-/*
-function search(kw){
+
+function tableMatch(kw){
 	keyword = kw;
 	d3.selectAll("table").selectAll("tbody").selectAll("tr")
-		.classed("hidden", keyword && function(d, i){
+		.classed("unmach", function(d, i){
+			if(!keyword){
+				return false;
+			}
 			found = false;
+
 			for(var k in tableheader){
-				if(d[k] === keyword){
+				console.log(k, d[tableheader[k]]);
+				if(d[tableheader[k]] === keyword){
 					found = true;
 				}
 			}
 			return !found;
 		});
 }
-*/
+
 </script>
 </body>
 

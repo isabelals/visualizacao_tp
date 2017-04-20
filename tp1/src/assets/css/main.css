@@ -6,6 +6,6 @@
 	display: block;
 }
 
-table tr.hidden{
+table tr.hidden, table tr.unmach{
 	display: none;
 }
