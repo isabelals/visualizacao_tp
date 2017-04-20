@@ -60,7 +60,6 @@ $(document).ready(function(){
 
 		putTable(tabledata, tableheader);
 		sortTable(colSort, sortDesc, tabledata);
-		setPagination(page, rowsPerPage);
 		tableMatch(keyword);
 	});
 });
@@ -87,7 +86,8 @@ function putTable(data, columns){
 function sortTable(column, desc, table){
 	d3.selectAll("table").selectAll("tbody").selectAll("tr").sort(function(a, b){
 		return (desc)?a[tableheader[column]] <= b[tableheader[column]]: b[tableheader[column]] <= a[tableheader[column]];
-	})
+	});
+	setPagination(page, rowsPerPage);
 }
 
 // Configura a paginação de acordo com a pagina e a quantidade de linhas na tabela
