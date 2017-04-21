@@ -25,6 +25,18 @@ function initTable(){
 	});
 }
 
+function initControllers(){
+	$(".button.prev").click(function(){
+		setPagination(page-1, rowsPerPage);
+	});
+	$(".button.next").click(function(){
+		setPagination(page+1, rowsPerPage);
+	});
+	$("input.search").keyup(function(){
+		tableMatch($(this).val());
+	})
+}
+
 // recebe a matriz que deve ser inserida na tabela
 // cada linha é um objeto (por causa do d3)
 function putTable(data, columns){
@@ -40,31 +52,36 @@ function putTable(data, columns){
 	.append('td')
 	.text(function (d) { return d.value; });
 
-	sortTable(colSort, sortDesc, tabledata);
+	sortTable(colSort, sortDesc);
 	tableMatch(keyword);
 }
 
 // ordena a tabela
 // column: id da coluna que será ordenada
 // desc: (bool) verdadeiro se for para ordenar em ordem crescente
-function sortTable(column, desc, table){
+function sortTable(column, desc){
 	d3.selectAll("table").selectAll("tbody").selectAll("tr").sort(function(a, b){
 		return (desc)?a[tableheader[column]] <= b[tableheader[column]]: b[tableheader[column]] <= a[tableheader[column]];
 	});
-	
+
 	setPagination(0, rowsPerPage);
 }
 
 // Configura a paginação de acordo com a pagina e a quantidade de linhas na tabela
 function setPagination(newPage, rows){
+	if(newPage < 0) newPage = 0;
+	if(rows < 1) rows = rows;
+
 	page = newPage;
 	rowsPerPage = rows;
 	var start = newPage*rowsPerPage; // primeira linha a ser exibida
 	var end = start + rowsPerPage -1; // o índice começa de zero
-	d3.selectAll("table").selectAll("tbody").selectAll("tr")
+	d3.selectAll("table").selectAll("tbody").selectAll("tr:not(.unmach)")
 		.classed("hidden", function(d, i){
 			return !(start <= i && i <= end) // verdade se i está fora dos limites
 		});
+
+	d3.selectAll(".page-label").text(page);
 }
 
 function tableMatch(kw){
@@ -77,10 +94,13 @@ function tableMatch(kw){
 			found = false;
 
 			for(var k in tableheader){
-				if(d[tableheader[k]] === keyword){
-					found = true;
+				if(typeof(d[tableheader[k]])==="string"){
+					found = found || d[tableheader[k]].toLowerCase().search(keyword.toLowerCase()) >=0; // verifica se contém a string
+				}else {
+					found = found || (d[tableheader[k]] == keyword);
 				}
 			}
 			return !found;
 		});
+	setPagination(page, rowsPerPage);
 }

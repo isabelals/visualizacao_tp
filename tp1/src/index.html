@@ -31,13 +31,13 @@
 					<i class="fa fa-chevron-left" aria-hidden="true"></i>
 				</div>
 				<span class="label page-label">0</span>
-				<div class="button prev">
+				<div class="button next">
 					<i class="fa fa-chevron-right" aria-hidden="true"></i>
 				</div>
 			</div>
 			<div class="control search-container">
 				<i class="fa fa-search" aria-hidden="true"></i>
-				<input type="text" name="search" value="" placeholder="Buscar">
+				<input class="search" type="text" name="search" value="" placeholder="Buscar">
 			</div>
 		</div>
 		<table class="table table-striped">
@@ -52,6 +52,7 @@
 <script type="text/javascript"> // INSERIR JAVASCRITP INICIAL AQUI (MAIN)
 $(document).ready(function(){
 	initTable();
+	initControllers();
 });
 </script>
 </body>
