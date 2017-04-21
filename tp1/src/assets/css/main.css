@@ -1,3 +1,64 @@
+
+/* CONTROLES */
+input, input:focus {
+	border: none;
+}
+
+.fa{
+	opacity: .5;
+	cursor: default;
+}
+
+.table-control, .control, .button{
+	display: flex;
+	align-items: center;
+}
+
+.search-container, .page-container{
+	margin: 8px;
+}
+
+.search-container{
+	flex-grow: 1;
+	padding: 16px 0 8px 0;
+	border-bottom: solid rgba(0, 0, 0, 0.3) 1px;
+}
+.search-container:hover{
+	border-bottom: solid rgba(0, 0, 0, 0.7) 1px;
+}
+.search-container:hover .fa{
+	opacity: .7;
+}
+.search-container .fa-search{
+	min-width: 24px;
+	margin: 0 8px;
+}
+.search-container input{
+	flex-grow: 1;
+}
+
+.button, .label{
+	height: 32px;
+	/*margin: 8px;*/
+	margin-right: 0;
+	border-radius: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.button:hover{
+	background: rgba(0, 0, 255	, 0.3);
+}
+
+.label{
+	display: flex;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.7);
+	background-color: transparent;
+	font-size: 90%;
+}
+
+/*TABELA*/
 #header-container .title{
 	text-align: center;
 }
