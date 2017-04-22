@@ -21,17 +21,17 @@ input, input:focus {
 .search-container{
 	flex-grow: 1;
 	padding: 16px 0 8px 0;
-	border-bottom: solid rgba(0, 0, 0, 0.3) 1px;
+	/*border-bottom: solid rgba(0, 0, 0, 0.3) 1px;*/
 }
 .search-container:hover{
-	border-bottom: solid rgba(0, 0, 0, 0.7) 1px;
+	/*border-bottom: solid rgba(0, 0, 0, 0.7) 1px;*/
 }
 .search-container:hover .fa{
-	opacity: .7;
+	opacity: .8;
 }
 .search-container .fa-search{
 	min-width: 24px;
-	margin: 0 8px;
+	margin-left: 8px;
 }
 .search-container input{
 	flex-grow: 1;
