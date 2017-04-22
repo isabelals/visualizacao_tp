@@ -63,8 +63,9 @@ input, input:focus {
 	text-align: center;
 }
 #header-container .author{
-	text-align: left;;
+	text-align: center;
 	display: block;
+	color: #8B8989;
 }
 
 table tr.hidden, table tr.unmach{
